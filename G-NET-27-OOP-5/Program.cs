@@ -35,7 +35,16 @@ namespace G_NET_27_OOP_5
             //deepcopy => object must isolated , modification should not affect original object
             // modification will affect original object
             #endregion
+
+
+
+            #region Q4
+            // e1  => {  Dev,  Testing} };
+            // e2 => { QA,Testing } };
+            // because in shallow copy copy the reference refer to object not the object itself so both e1 and e2 refer to same object in memory so any change in one will reflect in other
+            #endregion
             #endregion
         }
+
     }
 }
