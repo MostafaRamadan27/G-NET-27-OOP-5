@@ -27,6 +27,14 @@ namespace G_NET_27_OOP_5
             // IArabicSpeaker arabicSpeaker = translator;
             // arabicSpeaker.Greet(); // Calls IArabicSpeaker's Greet method
             #endregion
+
+            #region Q3
+            // Shallow copy the object but copies reference for reference type field 
+            // Deepcopy copy object and all nested object
+            //SHallow => object is immutable ,no nested reference state , perfomance is critical
+            //deepcopy => object must isolated , modification should not affect original object
+            // modification will affect original object
+            #endregion
             #endregion
         }
     }
