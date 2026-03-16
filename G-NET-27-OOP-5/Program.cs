@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Buffers;
+using System.Runtime.InteropServices;
 
 namespace G_NET_27_OOP_5
 {
@@ -44,7 +45,68 @@ namespace G_NET_27_OOP_5
             // because in shallow copy copy the reference refer to object not the object itself so both e1 and e2 refer to same object in memory so any change in one will reflect in other
             #endregion
             #endregion
+
+
+            #region Part 02 : Practical (Extending the Movie Ticket Booking System)
+
+            Cinema cinema = new Cinema("Cineplex");
+            cinema.OpenCinema();
+            Ticket ticket01 = new StandardTicket("Inception", 120.0m, "A-5");
+
+            Ticket ticket02 = new VIPTicket("Avengers", 200.0m, true);
+
+            Ticket ticket03 = new IMAXTicket("Avatar", 180.0m, true);
+
+            Console.WriteLine(ticket01.SetPrice(250));
+            Console.WriteLine(ticket02.SetPrice(250, 4));
+
+            cinema.AddTicket(ticket01);
+            cinema.AddTicket(ticket02);
+            cinema.AddTicket(ticket03);
+
+            cinema.PrintAllTickets();
+            Console.WriteLine("All Ticket");
+            // d. Clone VIP ticket
+            Ticket clonedVIP = (Ticket)ticket02.Clone();
+            clonedVIP.MovieName = "Joker";
+
+
+            Console.WriteLine("Original VIP Ticket:");
+            ticket02.PrintInfo();
+
+            Console.WriteLine("Cloned VIP Ticket:");
+            clonedVIP.PrintInfo();
+
+            Console.WriteLine("Cancel standard Ticket:");
+            ticket01.CancelBooking();
+            ticket01.PrintInfo();
+
+
+            Console.WriteLine("Printing using BookingHelper:");
+            IPrintInfo[] tickets = { ticket01, ticket02, ticket03, clonedVIP };
+            BookingHelper(tickets);
+            Console.WriteLine("Book standard Ticket:");
+            ticket01.BookTicket();
+            ticket01.PrintInfo();
+            Console.WriteLine("Cancel standard Ticket:");
+            ticket01.CancelBooking();
+            ticket01.PrintInfo();
+
+
+            cinema.CloseCinema();
+
+
+
+            #endregion
         }
 
+        public static void BookingHelper(IPrintInfo[] printInfo)
+        {
+            foreach (var item in printInfo)
+            {
+                item.PrintInfo();
+
+            }
+        }
     }
 }
